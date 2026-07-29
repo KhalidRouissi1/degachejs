@@ -1,4 +1,5 @@
 import { validatePhoneNumber, getCarrierInfo } from "./phone-number";
+import { formatPhoneNumber } from "../formatters/phone-number";
 import { CARRIERS } from "../constants";
 
 describe("Phone Number Validators", () => {
@@ -126,6 +127,18 @@ describe("Phone Number Validators", () => {
         expect(getCarrierInfo("+216 50123456", { strict: true })).toBeNull();
         expect(getCarrierInfo("50-123-456", { strict: true })).toBeNull();
       });
+    });
+  });
+
+  describe("formatPhoneNumber", () => {
+    it("should format a local 8-digit number correctly", () => {
+      expect(formatPhoneNumber("20123456")).toBe("+216 20 123 456");
+    });
+
+    it("should formats numbers that already include +216 prefix", () => {
+      const result = formatPhoneNumber("+21620123456");
+      expect(result).toBe("+216 20 123 456");
+      expect(result).not.toBe("+216 21 620 123456");
     });
   });
 });
