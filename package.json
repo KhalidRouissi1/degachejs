@@ -1,9 +1,17 @@
 {
   "name": "degachejs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A Tunisian utility library for working with CIN, phone numbers, addresses, and more",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    }
+  },
   "scripts": {
     "build": "tsdown",
     "test": "vitest run",
